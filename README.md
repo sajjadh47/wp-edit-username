@@ -25,22 +25,29 @@ This plugin adds feature to edit/change user username.
 - Email Body Text Change via filter ($new_username & $old_username are always prepended to the email text) `wp_username_changed_email_body`.
 ### Hooks Usage:
 
-`<?php
-
-add_filter( "wp_username_changed_email_subject", "your_function" );
-your_function($subject){
-	$subject = 'Your customized subject';
-	return $subject;
-}
-
-add_filter( "wp_username_changed_email_body", "your_function" );
-function your_function($$old_username,$new_username){
-	
-	$email_body = "Your custom email text body.";
-	return $email_body;
-}
-
-?>`
+`
+	<?php
+		
+		add_filter( "wp_username_changed_email_subject", "change_email_subject" );
+		
+		function change_email_subject( $subject )
+		{
+			$subject = 'Your customized subject';
+			
+			return $subject;
+		}
+		
+		add_filter( "wp_username_changed_email_body", "change_email_body" );
+		
+		function change_email_body( $old_username, $new_username )
+		{
+			
+			$email_body = "Your custom email text body.";
+			
+			return $email_body;
+		}
+	?>
+`
 
 **Interested in contributing to WP Edit Username?**
 Contact me sagorh672(at)gmail.com
