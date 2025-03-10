@@ -1,11 +1,13 @@
 === WP Edit Username ===
+Tags: user-profile, profile-edit, ajax, change-username, username
 Contributors: sajjad67
-Tags: user-profile,profile-edit,ajax,change-username,username
-Requires at least: 5.6
+Author: Sajjad Hossain Sagor
 Tested up to: 6.7
+Requires at least: 5.6
 Stable tag: 2.0.1
-License: GPLv2
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP: 8.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Easily Edit User Profile Username clicking a button.
 
@@ -23,19 +25,20 @@ This plugin adds feature to edit/change user username.
 
 `<?php
 
-add_filter( "wp_username_changed_email_subject", "your_function", 10, 3 );
-
-your_function( $subject, $old_username, $new_username )
+add_filter( "wp_username_changed_email_subject", "change_email_subject" );
+		
+function change_email_subject( $subject )
 {
 	$subject = 'Your customized subject';
 	
 	return $subject;
 }
 
-add_filter( "wp_username_changed_email_body", "your_function", 10, 3 );
+add_filter( "wp_username_changed_email_body", "change_email_body" );
 
-function your_function( $email_body, $old_username, $new_username )
-{	
+function change_email_body( $old_username, $new_username )
+{
+	
 	$email_body = "Your custom email text body.";
 	
 	return $email_body;
@@ -57,8 +60,8 @@ Go to Plugins > Add New.
 4. The resulting installation screen will list the installation as successful or note any problems during the install.
 If successful, click Activate Plugin to activate it, or Return to Plugin Installer for further actions.
 
-To add a WordPress Plugin from github repo / plugin zip file :
-1. Go to wordpress plugin page
+To add a WordPress Plugin from GitHub repo / plugin zip file :
+1. Go to WordPress plugin page
 2. Click Add New & Upload Plugin
 3. Drag / Click upload the plugin zip file
 4. The resulting installation screen will list the installation as successful or note any problems during the install.
