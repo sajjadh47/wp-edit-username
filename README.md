@@ -1,10 +1,11 @@
 # WP Edit Username
 
+**Tags:** user, user-profile, profile-edit, edit, ajax, update, change-username, username \
 **Contributors:** sajjad67 \
-**Tags:** user,user-profile,profile-edit,edit,ajax,update,change-username,username \
 **Requires at least:** 5.6 \
-**Tested up to:** 6.6 \
-**Stable tag:** trunk \
+**Tested up to:** 6.7 \
+**Stable tag:** 2.0.2 \
+**Requires PHP:** 8.0
 **License:** GPLv2 \
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +92,9 @@ Update inputs according to your requirement and you are good to go.
 
 
 ## Changelog
+### 2.0.1
+
+- Minor changes in codebase only.
 
 ### 1.0.7
 
