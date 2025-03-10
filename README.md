@@ -99,39 +99,33 @@ Update inputs according to your requirement and you are good to go.
 
 ![After Username Changed Message.](https://ps.w.org/wp-edit-username/assets/screenshot-4.png)
 
-
 ## Changelog
-### 2.0.1
 
+### 2.0.1
 - Minor changes in codebase only.
 
 ### 1.0.7
-
 - Checked for latest wp version & updated coding styles... major changes nothing
 
 ### 1.0.6
-
 - Checked for latest wp version & updated coding styles... major changes nothing
 
 ### 1.0.5
-
 - Checked for latest wp version & updated coding styles... major changes nothing
 
 ### 1.0.4
-
 - Checked for latest wp version & updated coding styles... major changes nothing
 
 ### 1.0.3
-
 - Checked for latest wp version & updated coding styles... major changes nothing
+
 ### 1.0.2
-
 - Checked for latest wp version & updated coding styles... major changes nothing
+
 ### 1.0.1
-
 - Checked for latest wp version & updated coding styles... major changes nothing
-### 1.0.0
 
+### 1.0.0
 - Initial release.
 
 ## Upgrade Notice
