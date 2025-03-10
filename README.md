@@ -26,26 +26,28 @@ This plugin adds feature to edit/change user username.
 ### Hooks Usage:
 
 `
+	
 	<?php
+	
+	add_filter( "wp_username_changed_email_subject", "change_email_subject" );
+	
+	function change_email_subject( $subject )
+	{
+		$subject = 'Your customized subject';
 		
-		add_filter( "wp_username_changed_email_subject", "change_email_subject" );
+		return $subject;
+	}
+	
+	add_filter( "wp_username_changed_email_body", "change_email_body" );
+	
+	function change_email_body( $old_username, $new_username )
+	{
 		
-		function change_email_subject( $subject )
-		{
-			$subject = 'Your customized subject';
-			
-			return $subject;
-		}
+		$email_body = "Your custom email text body.";
 		
-		add_filter( "wp_username_changed_email_body", "change_email_body" );
-		
-		function change_email_body( $old_username, $new_username )
-		{
-			
-			$email_body = "Your custom email text body.";
-			
-			return $email_body;
-		}
+		return $email_body;
+	}
+	
 	?>
 `
 
