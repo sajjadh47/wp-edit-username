@@ -1,13 +1,9 @@
 # WP Edit Username
 
 **Tags:** user, user-profile, profile-edit, edit, ajax, update, change-username, username \
-**Contributors:** sajjad67 \
 **Requires at least:** 5.6 \
-**Tested up to:** 6.7 \
-**Stable tag:** 2.0.2 \
+**Tested up to:** 6.8 \
 **Requires PHP:** 8.0 \
-**License:** GPLv2 \
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 Easily Edit User Profile Username clicking a button.
 
