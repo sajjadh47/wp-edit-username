@@ -4,7 +4,7 @@
  * is used to load the plugin's public-facing functionality.
  *
  * @package       WP_Edit_Username
- * @subpackage    WP_Edit_Username/includes
+ * @subpackage    WP_Edit_Username/public
  * @author        Sajjad Hossain Sagor <sagorh672@gmail.com>
  */
 

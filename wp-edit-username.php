@@ -23,7 +23,7 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
@@ -47,13 +47,13 @@ define( 'WP_EDIT_USERNAME_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
  *
  * @since    2.0.0
  */
-function wp_edit_username_on_activate() {
+function on_activate_wp_edit_username() {
 	require_once WP_EDIT_USERNAME_PLUGIN_PATH . 'includes/class-wp-edit-username-activator.php';
 
 	WP_Edit_Username_Activator::on_activate();
 }
 
-register_activation_hook( __FILE__, 'wp_edit_username_on_activate' );
+register_activation_hook( __FILE__, 'on_activate_wp_edit_username' );
 
 /**
  * The code that runs during plugin deactivation.
@@ -61,13 +61,13 @@ register_activation_hook( __FILE__, 'wp_edit_username_on_activate' );
  *
  * @since    2.0.0
  */
-function wp_edit_username_on_deactivate() {
+function on_deactivate_wp_edit_username() {
 	require_once WP_EDIT_USERNAME_PLUGIN_PATH . 'includes/class-wp-edit-username-deactivator.php';
 
 	WP_Edit_Username_Deactivator::on_deactivate();
 }
 
-register_deactivation_hook( __FILE__, 'wp_edit_username_on_deactivate' );
+register_deactivation_hook( __FILE__, 'on_deactivate_wp_edit_username' );
 
 /**
  * The core plugin class that is used to define internationalization,
