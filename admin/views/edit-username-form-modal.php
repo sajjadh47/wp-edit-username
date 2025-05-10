@@ -10,6 +10,11 @@
  * @author        Sajjad Hossain Sagor <sagorh672@gmail.com>
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
 ?>
 <!-- Modal -->
 <div class="modal fade" id="edit_username_modal" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static" role="dialog">
