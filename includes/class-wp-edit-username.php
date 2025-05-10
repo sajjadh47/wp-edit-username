@@ -186,7 +186,7 @@ class WP_Edit_Username {
 	 *
 	 * @since     2.0.0
 	 * @access    public
-	 * @return    string    The name of the plugin.
+	 * @return    string The name of the plugin.
 	 */
 	public function get_plugin_name() {
 		return $this->plugin_name;
