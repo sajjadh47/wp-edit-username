@@ -1,1 +1,8 @@
-<?php // Silence is golden
+<?php
+/**
+ * Silence is golden
+ *
+ * @since      2.0.0
+ * @package    WP_Edit_Username
+ * @author     Sajjad Hossain Sagor <sagorh672@gmail.com>
+ */

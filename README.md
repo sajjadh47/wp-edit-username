@@ -4,7 +4,7 @@
 **Contributors:** sajjad67 \
 **Requires at least:** 5.6 \
 **Tested up to:** 6.7 \
-**Stable tag:** 2.0.1 \
+**Stable tag:** 2.0.2 \
 **Requires PHP:** 8.0 \
 **License:** GPLv2 \
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,12 +17,12 @@ This plugin adds feature to edit/change user username.
 
 ### Features:
 
-- Edit UserName
-- Only Who can edit_other_users() capability can edit username.
-- On change username a email would send to the user email about username change if send email is checked!
-- You can modify email text & subject in admin dashboard & via filter hook
-- Email Subject Change via filter `wp_username_changed_email_subject`.
-- Email Body Text Change via filter ($new_username & $old_username are always prepended to the email text) `wp_username_changed_email_body`.
+- Edit Username: Allows editing of usernames.
+- Only users with the `edit_other_users()` capability can change usernames.
+- If the “Send Email” option is enabled, the user will receive a notification email when their username is changed.
+- You can customize the email subject and body text in the admin dashboard or via filter hooks.
+- Modify the email subject using the filter: `wp_username_changed_email_subject`.
+- Adjust the email body content using the filter `wp_username_changed_email_body`. (Note: `$new_username` and `$old_username` are automatically prepended to the email content).
 ### Hooks Usage:
 
 `
@@ -42,7 +42,6 @@ This plugin adds feature to edit/change user username.
 	
 	function change_email_body( $old_username, $new_username )
 	{
-		
 		$email_body = "Your custom email text body.";
 		
 		return $email_body;
@@ -100,6 +99,9 @@ Update inputs according to your requirement and you are good to go.
 ![After Username Changed Message.](https://ps.w.org/wp-edit-username/assets/screenshot-4.png)
 
 ## Changelog
+
+### 2.0.2
+- Checked for latest wp version 6.8
 
 ### 2.0.1
 - Minor changes in codebase only.
