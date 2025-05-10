@@ -38,7 +38,6 @@ add_filter( 'wp_username_changed_email_body', 'change_email_body' );
 
 function change_email_body( $old_username, $new_username )
 {
-	
 	$email_body = "Your custom email text body.";
 	
 	return $email_body;

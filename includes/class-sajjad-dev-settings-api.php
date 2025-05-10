@@ -185,7 +185,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		 * Add a field
 		 *
 		 * @param array $section Single section.
-		 * @param array $field   Field data.
+		 * @param array $field Field data.
 		 */
 		public function add_field( $section, $field ) {
 			$defaults = array(
@@ -579,7 +579,8 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		/**
 		 * Sanitize callback for Settings API
 		 *
-		 * @param array $options options to sanitize.
+		 * @param  array $options options to sanitize.
+		 *
 		 * @return mixed
 		 */
 		public function sanitize_options( $options ) {
@@ -604,7 +605,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		/**
 		 * Get sanitization callback for given option slug
 		 *
-		 * @param string $slug option slug.
+		 * @param  string $slug option slug.
 		 *
 		 * @return mixed string or bool false
 		 */
@@ -631,9 +632,10 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		/**
 		 * Get the value of a settings field
 		 *
-		 * @param string $option settings field name.
-		 * @param string $section the section name this field belongs to.
-		 * @param string $default_val default text if it's not found.
+		 * @param  string $option settings field name.
+		 * @param  string $section the section name this field belongs to.
+		 * @param  string $default_val default text if it's not found.
+		 *
 		 * @return string
 		 */
 		public function get_option( $option, $section, $default_val = '' ) {
