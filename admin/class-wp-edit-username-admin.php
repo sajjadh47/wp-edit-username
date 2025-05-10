@@ -107,21 +107,6 @@ class WP_Edit_Username_Admin {
 	}
 
 	/**
-	 * Show edit username form modal.
-	 *
-	 * @since     2.0.0
-	 * @access    public
-	 */
-	public function show_edit_modal() {
-		global $pagenow;
-
-		// check if current page is edit user page and current user can edit user information.
-		if ( in_array( $pagenow, array( 'profile.php', 'user-edit.php' ), true ) && current_user_can( 'edit_users' ) ) {
-			require WP_EDIT_USERNAME_PLUGIN_PATH . 'admin/views/edit-username-form-modal.php';
-		}
-	}
-
-	/**
 	 * Adds a settings link to the plugin's action links on the plugin list table.
 	 *
 	 * @since     2.0.0
@@ -134,6 +119,21 @@ class WP_Edit_Username_Admin {
 		$links[] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=wp-edit-username' ), __( 'Settings', 'wp-edit-username' ) );
 
 		return $links;
+	}
+
+	/**
+	 * Show edit username form modal.
+	 *
+	 * @since     2.0.0
+	 * @access    public
+	 */
+	public function show_edit_modal() {
+		global $pagenow;
+
+		// check if current page is edit user page and current user can edit user information.
+		if ( in_array( $pagenow, array( 'profile.php', 'user-edit.php' ), true ) && current_user_can( 'edit_users' ) ) {
+			require WP_EDIT_USERNAME_PLUGIN_PATH . 'admin/views/edit-username-form-modal.php';
+		}
 	}
 
 	/**
