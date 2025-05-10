@@ -224,13 +224,9 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 					$callback        = function () use ( $section ) {
 						echo esc_textarea( str_replace( '"', '\"', $section['desc'] ) );
 					};
-
 				} elseif ( isset( $section['callback'] ) ) {
-
 					$callback = $section['callback'];
-
 				} else {
-
 					$callback = null;
 				}
 
