@@ -197,7 +197,7 @@ class WP_Edit_Username {
 	 *
 	 * @since     2.0.0
 	 * @access    public
-	 * @return    WP_Edit_Username_Loader    Orchestrates the hooks of the plugin.
+	 * @return    WP_Edit_Username_Loader Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -208,7 +208,7 @@ class WP_Edit_Username {
 	 *
 	 * @since     2.0.0
 	 * @access    public
-	 * @return    string    The version number of the plugin.
+	 * @return    string The version number of the plugin.
 	 */
 	public function get_version() {
 		return $this->version;
