@@ -58,7 +58,7 @@ class WP_Edit_Username_Admin {
 	 * @since     2.0.0
 	 * @access    public
 	 * @param     string $plugin_name The name of this plugin.
-	 * @param     string $version The version of this plugin.
+	 * @param     string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name  = $plugin_name;
@@ -111,9 +111,8 @@ class WP_Edit_Username_Admin {
 	 *
 	 * @since     2.0.0
 	 * @access    public
-	 *
 	 * @param     array $links The existing array of plugin action links.
-	 * @return    array The updated array of plugin action links, including the settings link.
+	 * @return    array        The updated array of plugin action links, including the settings link.
 	 */
 	public function add_plugin_action_links( $links ) {
 		$links[] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=wp-edit-username' ), __( 'Settings', 'wp-edit-username' ) );
@@ -184,7 +183,6 @@ class WP_Edit_Username_Admin {
 	 *
 	 * @since     2.0.0
 	 * @access    public
-	 *
 	 * @return    array An array of settings sections, where each section is an array
 	 *               with 'id' and 'title' keys.
 	 */
@@ -204,12 +202,11 @@ class WP_Edit_Username_Admin {
 	 *
 	 * @since     2.0.0
 	 * @access    public
-	 *
 	 * @return    array An array of settings fields, organized by section ID.  Each
-	 *               section ID is a key in the array, and the value is an array
-	 *               of settings fields for that section. Each settings field is
-	 *               an array with 'name', 'label', 'type', 'desc', and other keys
-	 *               depending on the field type.
+	 *                  section ID is a key in the array, and the value is an array
+	 *                  of settings fields for that section. Each settings field is
+	 *                  an array with 'name', 'label', 'type', 'desc', and other keys
+	 *                  depending on the field type.
 	 */
 	public function get_settings_fields() {
 		$settings_fields = array(
@@ -258,7 +255,6 @@ class WP_Edit_Username_Admin {
 	 *
 	 * @since     2.0.0
 	 * @access    public
-	 *
 	 * @return    void Sends a JSON response indicating success or failure.
 	 */
 	public function update_user_name() {

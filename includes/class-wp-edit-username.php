@@ -79,9 +79,9 @@ class WP_Edit_Username {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - WP_Edit_Username_Loader. Orchestrates the hooks of the plugin.
-	 * - WP_Edit_Username_i18n. Defines internationalization functionality.
+	 * - WP_Edit_Username_i18n.   Defines internationalization functionality.
 	 * - Sajjad_Dev_Settings_API. Provides an interface for interacting with the WordPress Options API.
-	 * - WP_Edit_Username_Admin. Defines all hooks for the admin area.
+	 * - WP_Edit_Username_Admin.  Defines all hooks for the admin area.
 	 * - WP_Edit_Username_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
