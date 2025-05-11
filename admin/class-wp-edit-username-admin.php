@@ -112,7 +112,7 @@ class WP_Edit_Username_Admin {
 	 * @since     2.0.0
 	 * @access    public
 	 * @param     array $links The existing array of plugin action links.
-	 * @return    array        The updated array of plugin action links, including the settings link.
+	 * @return    array $links The updated array of plugin action links, including the settings link.
 	 */
 	public function add_plugin_action_links( $links ) {
 		$links[] = sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=wp-edit-username' ), __( 'Settings', 'wp-edit-username' ) );
@@ -184,7 +184,7 @@ class WP_Edit_Username_Admin {
 	 * @since     2.0.0
 	 * @access    public
 	 * @return    array An array of settings sections, where each section is an array
-	 *               with 'id' and 'title' keys.
+	 *                  with 'id' and 'title' keys.
 	 */
 	public function get_settings_sections() {
 		$sections = array(
