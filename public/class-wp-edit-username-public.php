@@ -40,7 +40,7 @@ class WP_Edit_Username_Public {
 	 * @since     2.0.0
 	 * @access    public
 	 * @param     string $plugin_name The name of the plugin.
-	 * @param     string $version The version of this plugin.
+	 * @param     string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
