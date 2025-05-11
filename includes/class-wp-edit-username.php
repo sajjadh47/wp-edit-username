@@ -213,4 +213,31 @@ class WP_Edit_Username {
 	public function get_version() {
 		return $this->version;
 	}
+
+	/**
+	 * Retrieves the value of a specific settings field.
+	 *
+	 * This method fetches the value of a settings field from the WordPress options database.
+	 * It retrieves the entire option group for the given section and then extracts the
+	 * value for the specified field.
+	 *
+	 * @since     2.0.0
+	 * @access    public
+	 * @param     string $option        The name of the settings field.
+	 * @param     string $section       The name of the section this field belongs to. This corresponds
+	 *                                  to the option name used in `register_setting()`.
+	 * @param     string $default_value Optional. The default value to return if the field's value
+	 *                                  is not found in the database. Default is an empty string.
+	 * @return    string|mixed          The value of the settings field, or the default value if not found.
+	 */
+	public function get_option( $option, $section, $default_value = '' ) {
+		$options = get_option( $section ); // Get all options for the section.
+
+		// Check if the option exists within the section's options array.
+		if ( isset( $options[ $option ] ) ) {
+			return $options[ $option ]; // Return the option value.
+		}
+
+		return $default_value; // Return the default value if the option is not found.
+	}
 }
