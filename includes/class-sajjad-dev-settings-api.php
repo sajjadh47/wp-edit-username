@@ -490,7 +490,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		 * @param     array $args Settings field args.
 		 */
 		public function callback_html( $args ) {
-			echo wp_kses_post( $this->get_field_description( $args ) );
+			echo wp_kses( $this->get_field_description( $args ), $this->allowed_html_tags );
 		}
 
 		/**
@@ -520,7 +520,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 
 			echo '</div>';
 
-			echo wp_kses_post( $this->get_field_description( $args ) );
+			echo wp_kses( $this->get_field_description( $args ), $this->allowed_html_tags );
 		}
 
 		/**
@@ -589,7 +589,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				'echo'     => 0,
 			);
 
-			echo wp_kses_post( wp_dropdown_pages( $dropdown_args ) );
+			echo wp_kses( wp_dropdown_pages( $dropdown_args ), $this->allowed_html_tags );
 		}
 
 		/**
@@ -608,7 +608,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				'hide_empty' => 0,
 			);
 
-			echo wp_kses_post( wp_dropdown_categories( $dropdown_args ) );
+			echo wp_kses( wp_dropdown_categories( $dropdown_args ), $this->allowed_html_tags );
 		}
 
 		/**
@@ -629,7 +629,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				'role__not_in' => isset( $args['role__not_in'] ) ? $args['role__not_in'] : array(),
 			);
 
-			echo wp_kses_post( wp_dropdown_users( $dropdown_args ) );
+			echo wp_kses( wp_dropdown_users( $dropdown_args ), $this->allowed_html_tags );
 		}
 
 		/**
