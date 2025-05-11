@@ -230,7 +230,7 @@ class WP_Edit_Username {
 	 *                                  is not found in the database. Default is an empty string.
 	 * @return    string|mixed          The value of the settings field, or the default value if not found.
 	 */
-	public function get_option( $option, $section, $default_value = '' ) {
+	public static function get_option( $option, $section, $default_value = '' ) {
 		$options = get_option( $section ); // Get all options for the section.
 
 		// Check if the option exists within the section's options array.

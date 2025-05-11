@@ -35,20 +35,11 @@ class WP_Edit_Username_Admin {
 	private $version;
 
 	/**
-	 * The plugin options.
-	 *
-	 * @since     2.0.0
-	 * @access    private
-	 * @var       array $options Holds saved/default value of plugin options.
-	 */
-	private $options;
-
-	/**
 	 * The plugin options api wrapper object.
 	 *
 	 * @since     2.0.0
 	 * @access    private
-	 * @var       array $settings_api Holds the plugin settings api wrapper class object.
+	 * @var       array $settings_api Holds the plugin options api wrapper class object.
 	 */
 	private $settings_api;
 
@@ -63,7 +54,6 @@ class WP_Edit_Username_Admin {
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name  = $plugin_name;
 		$this->version      = $version;
-		$this->options      = get_option( 'wpeu_register_settings_fields', array() );
 		$this->settings_api = new Sajjad_Dev_Settings_API();
 	}
 
@@ -237,10 +227,22 @@ class WP_Edit_Username_Admin {
 				array(
 					'name'    => 'wpeu_email_body_field',
 					'label'   => __( 'Email Body Text', 'wp-edit-username' ),
-					'type'    => 'textarea',
-					'default' => __( 'Your Username has been changed', 'wp-edit-username' ),
+					'size'    => '700px',
+					'type'    => 'wysiwyg',
+					'default' => sprintf(
+						'<img src="{{gravatar_url}}"><p><strong>%s!!!</strong> %s<p>%s: {{first_name}}</p><p>%s: {{last_name}}</p><p>%s: {{display_name}}</p><p>%s: {{nickname}}</p><p>%s: {{full_name}}</p><p>%s: {{old_username}}</p><p>%s: {{new_username}}</p>',
+						__( 'Warning', 'wp-edit-username' ),
+						__( 'Your Username has been changed.', 'wp-edit-username' ),
+						__( 'First Name', 'wp-edit-username' ),
+						__( 'Last Name', 'wp-edit-username' ),
+						__( 'Display Name', 'wp-edit-username' ),
+						__( 'Nickname', 'wp-edit-username' ),
+						__( 'Full Name', 'wp-edit-username' ),
+						__( 'Old Username', 'wp-edit-username' ),
+						__( 'New Username', 'wp-edit-username' ),
+					),
 					'desc'    => sprintf(
-						'<p>%s : <code>{{first_name}}</code> <code>{{last_name}}</code> <code>{{display_name}}</code> <code>{{full_name}}</code> <code>{{old_username}}</code> <code>{{new_username}}</code></p>',
+						'<p>%s : <code>{{first_name}}</code> <code>{{last_name}}</code> <code>{{display_name}}</code> <code>{{nickname}}</code> <code>{{full_name}}</code> <code>{{gravatar_url}}</code> <code>{{old_username}}</code> <code>{{new_username}}</code></p>',
 						__( 'Available shortcodes are', 'wp-edit-username' )
 					),
 				),
@@ -333,46 +335,79 @@ class WP_Edit_Username_Admin {
 					esc_html( $new_username )
 				);
 
-				if ( isset( $this->options['wpeu_send_email_field'] ) && 'on' === $this->options['wpeu_send_email_field'] ) {
+				if ( 'on' === WP_Edit_Username::get_option( 'wpeu_send_email_field', 'wpeu_register_settings_fields' ) ) {
 					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 					$user_email = $wpdb->get_var( $wpdb->prepare( "SELECT user_email FROM $wpdb->users WHERE user_login = %s", $new_username ) );
 
-					if ( isset( $this->options['wpeu_email_receiver_field'] ) ) {
-						switch ( $this->options['wpeu_email_receiver_field'] ) {
-							case 'user_only':
-								$to = array( sanitize_email( $user_email ) );
-								break;
+					switch ( WP_Edit_Username::get_option( 'wpeu_email_receiver_field', 'wpeu_register_settings_fields', 'admin_only' ) ) {
+						case 'user_only':
+							$to = array( sanitize_email( $user_email ) );
+							break;
 
-							case 'admin_only':
-								$to     = array();
-								$admins = get_users( 'role=Administrator' );
+						case 'admin_only':
+							$to     = array();
+							$admins = get_users( 'role=Administrator' );
 
-								foreach ( $admins as $admin ) {
-									$to[] = sanitize_email( $admin->user_email );
-								}
-								break;
+							foreach ( $admins as $admin ) {
+								$to[] = sanitize_email( $admin->user_email );
+							}
+							break;
 
-							case 'admin_user':
-								$to     = array( sanitize_email( $user_email ) );
-								$admins = get_users( 'role=Administrator' );
+						case 'admin_user':
+							$to     = array( sanitize_email( $user_email ) );
+							$admins = get_users( 'role=Administrator' );
 
-								foreach ( $admins as $admin ) {
-									$to[] = sanitize_email( $admin->user_email );
-								}
-								break;
+							foreach ( $admins as $admin ) {
+								$to[] = sanitize_email( $admin->user_email );
+							}
+							break;
 
-							default:
-								$to = array();
-								break;
-						}
+						default:
+							$to = array();
+							break;
 					}
 
 					$user = get_user_by( 'login', $new_username );
 
 					if ( $user ) {
-						$subject = apply_filters( 'wp_username_changed_email_subject', $this->options['wpeu_email_subject_field'], $old_username, $new_username );
-						$body    = apply_filters( 'wp_username_changed_email_body', $this->options['wpeu_email_body_field'], $old_username, $new_username );
-						$body    = str_replace( array( '{{first_name}}', '{{last_name}}', '{{display_name}}', '{{full_name}}', '{{old_username}}', '{{new_username}}' ), array( $user->first_name, $user->last_name, $user->display_name, $user->first_name . ' ' . $user->last_name, $old_username, $new_username ), $body );
+						$subject = apply_filters( 'wp_username_changed_email_subject', WP_Edit_Username::get_option( 'wpeu_email_subject_field', 'wpeu_register_settings_fields', __( 'Username Changed!', 'wp-edit-username' ) ), $old_username, $new_username );
+
+						$body = apply_filters( 'wp_username_changed_email_body', WP_Edit_Username::get_option( 'wpeu_email_body_field', 'wpeu_register_settings_fields', __( 'Your Username has been changed!', 'wp-edit-username' ) ), $old_username, $new_username );
+
+						// Get user data with fallbacks for missing data.
+						$first_name   = ! empty( $user->first_name ) ? $user->first_name : '';
+						$last_name    = ! empty( $user->last_name ) ? $user->last_name : '';
+						$display_name = ! empty( $user->display_name ) ? $user->display_name : '';
+						$nickname     = ! empty( $user->nickname ) ? $user->nickname : '';
+						$full_name    = trim( $first_name . ' ' . $last_name );
+						$gravatar_url     = get_avatar_url( $user->user_email, array( 'size' => 96 ) );
+
+						// Data mapping for placeholders.
+						$placeholders = array(
+							'{{first_name}}',
+							'{{last_name}}',
+							'{{display_name}}',
+							'{{nickname}}',
+							'{{full_name}}',
+							'{{gravatar_url}}',
+							'{{old_username}}',
+							'{{new_username}}',
+						);
+
+						$replacements = array(
+							esc_html( $first_name ),
+							esc_html( $last_name ),
+							esc_html( $display_name ),
+							esc_html( $nickname ),
+							esc_html( $full_name ),
+							esc_url( $gravatar_url ),
+							esc_html( $old_username ),
+							esc_html( $new_username ),
+						);
+
+						// Replace placeholders with actual data.
+						$body = str_replace( $placeholders, $replacements, $body );
+
 						$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 
 						if ( $to ) {
