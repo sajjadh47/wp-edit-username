@@ -59,12 +59,7 @@ class WP_Edit_Username {
 	 * @access    public
 	 */
 	public function __construct() {
-		if ( defined( 'WP_EDIT_USERNAME_VERSION' ) ) {
-			$this->version = WP_EDIT_USERNAME_VERSION;
-		} else {
-			$this->version = '1.0.0';
-		}
-
+		$this->version     = defined( 'WP_EDIT_USERNAME_VERSION' ) ? WP_EDIT_USERNAME_VERSION : '1.0.0';
 		$this->plugin_name = 'wp-edit-username';
 
 		$this->load_dependencies();
@@ -156,7 +151,7 @@ class WP_Edit_Username {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'admin_init' );
 
-		$this->loader->add_action( 'wp_ajax_wpeu_update_user_name', $plugin_admin, 'update_user_name' );
+		$this->loader->add_action( 'wp_ajax_wpeu_update_user_name', $plugin_admin, 'update_username' );
 	}
 
 	/**

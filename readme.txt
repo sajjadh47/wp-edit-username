@@ -4,7 +4,7 @@ Contributors: sajjad67
 Author: Sajjad Hossain Sagor
 Tested up to: 6.8
 Requires at least: 5.6
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -45,9 +45,6 @@ function change_email_body( $old_username, $new_username )
 
 ?>`
 
-**Interested in contributing to WP Edit Username?**
-Contact me sagorh672(at)gmail.com
-
 == Installation ==
 To add a WordPress Plugin using the built-in plugin installer:
 
@@ -79,6 +76,8 @@ Update inputs according to your requirement and you are good to go.
 4. After Username Changed Message.
 
 == Changelog ==
+= 2.0.3 =
+- Applied security patch and added more html tags to the allowed html list
 = 2.0.2 =
 - Checked for latest wp version 6.8
 = 2.0.1 =

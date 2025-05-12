@@ -259,7 +259,7 @@ class WP_Edit_Username_Admin {
 	 * @access    public
 	 * @return    void Sends a JSON response indicating success or failure.
 	 */
-	public function update_user_name() {
+	public function update_username() {
 		$response = array();
 
 		if ( ! current_user_can( 'edit_users' ) ) {
@@ -370,8 +370,28 @@ class WP_Edit_Username_Admin {
 					$user = get_user_by( 'login', $new_username );
 
 					if ( $user ) {
+						/**
+						 * Filters the email subject.
+						 *
+						 * This filter allows you to modify the email subject.
+						 * You can use this filter to alter the email subject.
+						 *
+						 * @since    2.0.3
+						 * @param    array $subject Saved email subject.
+						 * @return   array $subject Modified email subject.
+						 */
 						$subject = apply_filters( 'wp_username_changed_email_subject', WP_Edit_Username::get_option( 'wpeu_email_subject_field', 'wpeu_register_settings_fields', __( 'Username Changed!', 'wp-edit-username' ) ), $old_username, $new_username );
 
+						/**
+						 * Filters the email body.
+						 *
+						 * This filter allows you to modify the email body.
+						 * You can use this filter to alter the email body.
+						 *
+						 * @since    2.0.3
+						 * @param    array $body Saved email body.
+						 * @return   array $body Modified email body.
+						 */
 						$body = apply_filters( 'wp_username_changed_email_body', WP_Edit_Username::get_option( 'wpeu_email_body_field', 'wpeu_register_settings_fields', __( 'Your Username has been changed!', 'wp-edit-username' ) ), $old_username, $new_username );
 
 						// Get user data with fallbacks for missing data.
@@ -380,7 +400,7 @@ class WP_Edit_Username_Admin {
 						$display_name = ! empty( $user->display_name ) ? $user->display_name : '';
 						$nickname     = ! empty( $user->nickname ) ? $user->nickname : '';
 						$full_name    = trim( $first_name . ' ' . $last_name );
-						$gravatar_url     = get_avatar_url( $user->user_email, array( 'size' => 96 ) );
+						$gravatar_url = get_avatar_url( $user->user_email, array( 'size' => 96 ) );
 
 						// Data mapping for placeholders.
 						$placeholders = array(
