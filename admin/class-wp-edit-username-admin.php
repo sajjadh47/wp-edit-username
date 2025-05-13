@@ -184,7 +184,17 @@ class WP_Edit_Username_Admin {
 			),
 		);
 
-		return $sections;
+		/**
+		 * Filters the plugin settings sections.
+		 *
+		 * This filter allows you to modify the plugin settings sections.
+		 * You can use this filter to add/remove/edit any settings section.
+		 *
+		 * @since    2.0.3
+		 * @param    array $settings_sections Default settings sections.
+		 * @return   array $settings_sections Modified settings sections.
+		 */
+		return apply_filters( 'wpeu_settings_sections', $sections );
 	}
 
 	/**
@@ -249,7 +259,17 @@ class WP_Edit_Username_Admin {
 			),
 		);
 
-		return $settings_fields;
+		/**
+		 * Filters the plugin settings fields.
+		 *
+		 * This filter allows you to modify the plugin settings fields.
+		 * You can use this filter to add/remove/edit any settings field.
+		 *
+		 * @since    2.0.3
+		 * @param    array $settings_fields Default settings fields.
+		 * @return   array $settings_fields Modified settings fields.
+		 */
+		return apply_filters( 'wpeu_settings_fields', $settings_fields );
 	}
 
 	/**
@@ -380,7 +400,7 @@ class WP_Edit_Username_Admin {
 						 * @param    array $subject Saved email subject.
 						 * @return   array $subject Modified email subject.
 						 */
-						$subject = apply_filters( 'wp_username_changed_email_subject', WP_Edit_Username::get_option( 'wpeu_email_subject_field', 'wpeu_register_settings_fields', __( 'Username Changed!', 'wp-edit-username' ) ), $old_username, $new_username );
+						$subject = apply_filters( 'wpeu_email_subject', WP_Edit_Username::get_option( 'wpeu_email_subject_field', 'wpeu_register_settings_fields', __( 'Username Changed!', 'wp-edit-username' ) ), $old_username, $new_username );
 
 						/**
 						 * Filters the email body.
@@ -392,7 +412,7 @@ class WP_Edit_Username_Admin {
 						 * @param    array $body Saved email body.
 						 * @return   array $body Modified email body.
 						 */
-						$body = apply_filters( 'wp_username_changed_email_body', WP_Edit_Username::get_option( 'wpeu_email_body_field', 'wpeu_register_settings_fields', __( 'Your Username has been changed!', 'wp-edit-username' ) ), $old_username, $new_username );
+						$body = apply_filters( 'wpeu_email_body', WP_Edit_Username::get_option( 'wpeu_email_body_field', 'wpeu_register_settings_fields', __( 'Your Username has been changed!', 'wp-edit-username' ) ), $old_username, $new_username );
 
 						// Get user data with fallbacks for missing data.
 						$first_name   = ! empty( $user->first_name ) ? $user->first_name : '';
@@ -428,7 +448,17 @@ class WP_Edit_Username_Admin {
 						// Replace placeholders with actual data.
 						$body = str_replace( $placeholders, $replacements, $body );
 
-						$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+						/**
+						 * Filters the email headers.
+						 *
+						 * This filter allows you to modify the email subject.
+						 * You can use this filter to alter the email subject.
+						 *
+						 * @since    2.0.3
+						 * @param    array $headers Default email headers.
+						 * @return   array $headers Modified email headers.
+						 */
+						$headers = apply_filters( 'wpeu_email_headers', array( 'Content-Type: text/html; charset=UTF-8' ) );
 
 						if ( $to ) {
 							foreach ( $to as $email ) {
