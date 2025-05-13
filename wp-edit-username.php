@@ -7,19 +7,21 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @package        WP_Edit_Username
- * @author         Sajjad Hossain Sagor <sagorh672@gmail.com>
+ * @package           WP_Edit_Username
+ * @author            Sajjad Hossain Sagor <sagorh672@gmail.com>
  *
- * Plugin Name:    WP Edit Username
- * Plugin URI:     https://wordpress.org/plugins/wp-edit-username/
- * Description:    Change WordPress User's Username From Edit User Admin Panel.
- * Version:        2.0.3
- * Author:         Sajjad Hossain Sagor
- * Author URI:     https://sajjadhsagor.com/
- * License:        GPL-2.0+
- * License URI:    https://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:    wp-edit-username
- * Domain Path:    /languages
+ * Plugin Name:       WP Edit Username
+ * Plugin URI:        https://wordpress.org/plugins/wp-edit-username/
+ * Description:       Change WordPress User's Username From Edit User Admin Panel.
+ * Version:           2.0.3
+ * Requires at least: 6.5
+ * Requires PHP:      7.4
+ * Author:            Sajjad Hossain Sagor
+ * Author URI:        https://sajjadhsagor.com/
+ * License:           GPL-2.0+
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       wp-edit-username
+ * Domain Path:       /languages
  */
 
 // If this file is called directly, abort.
