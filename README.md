@@ -16,8 +16,9 @@ This plugin adds feature to edit/change user username.
 - Only users with the `edit_other_users()` capability can change usernames.
 - If the “Send Email” option is enabled, the user will receive a notification email when their username is changed.
 - You can customize the email subject and body text in the admin dashboard or via filter hooks.
-- Modify the email subject using the filter: `wp_username_changed_email_subject`.
-- Adjust the email body content using the filter `wp_username_changed_email_body`. (Note: `$new_username` and `$old_username` are automatically prepended to the email content).
+- Modify the email subject using the filter: `wpeu_email_subject`.
+- Modify the email headers using the filter: `wpeu_email_headers`.
+- Adjust the email body content using the filter `wpeu_email_body`. (Note: `$new_username` and `$old_username` are automatically prepended to the email content).
 ### Hooks Usage:
 
 `
