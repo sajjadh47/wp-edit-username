@@ -2,7 +2,7 @@
 
 **Tags:** user, user-profile, profile-edit, edit, ajax, update, change-username, username \
 **Tested up to:** 6.8 \
-**Requires PHP:** 7.4
+**Requires PHP:** 8.0
 
 Easily Edit User Profile Username clicking a button.
 

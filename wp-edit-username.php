@@ -15,7 +15,7 @@
  * Description:       Change WordPress User's Username From Edit User Admin Panel.
  * Version:           2.0.3
  * Requires at least: 6.5
- * Requires PHP:      7.4
+ * Requires PHP:      8.0
  * Author:            Sajjad Hossain Sagor
  * Author URI:        https://sajjadhsagor.com/
  * License:           GPL-2.0+
