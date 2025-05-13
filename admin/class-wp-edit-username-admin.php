@@ -177,7 +177,7 @@ class WP_Edit_Username_Admin {
 	 *                  with 'id' and 'title' keys.
 	 */
 	public function get_settings_sections() {
-		$sections = array(
+		$settings_sections = array(
 			array(
 				'id'    => 'wpeu_register_settings_fields',
 				'title' => __( 'Notifications Settings', 'wp-edit-username' ),
@@ -188,13 +188,13 @@ class WP_Edit_Username_Admin {
 		 * Filters the plugin settings sections.
 		 *
 		 * This filter allows you to modify the plugin settings sections.
-		 * You can use this filter to add/remove/edit any settings section.
+		 * You can use this filter to add/remove/edit any settings sections.
 		 *
 		 * @since    2.0.3
 		 * @param    array $settings_sections Default settings sections.
 		 * @return   array $settings_sections Modified settings sections.
 		 */
-		return apply_filters( 'wpeu_settings_sections', $sections );
+		return apply_filters( 'wpeu_settings_sections', $settings_sections );
 	}
 
 	/**
