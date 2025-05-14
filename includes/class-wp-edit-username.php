@@ -59,7 +59,7 @@ class WP_Edit_Username {
 	 * @access    public
 	 */
 	public function __construct() {
-		$this->version     = defined( 'WP_EDIT_USERNAME_VERSION' ) ? WP_EDIT_USERNAME_VERSION : '1.0.0';
+		$this->version     = defined( 'WP_EDIT_USERNAME_PLUGIN_VERSION' ) ? WP_EDIT_USERNAME_PLUGIN_VERSION : '1.0.0';
 		$this->plugin_name = 'wp-edit-username';
 
 		$this->load_dependencies();
