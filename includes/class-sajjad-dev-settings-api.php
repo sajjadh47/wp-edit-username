@@ -40,10 +40,10 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		 * Allowed html tags array.
 		 *
 		 * @since     2.0.0
-		 * @access    protected
+		 * @access    public
 		 * @var       array
 		 */
-		protected $allowed_html_tags = array(
+		public $allowed_html_tags = array(
 			'a'        => array(
 				'id'     => true,
 				'class'  => true,
