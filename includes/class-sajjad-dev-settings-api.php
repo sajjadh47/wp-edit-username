@@ -43,7 +43,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		 * @access    public
 		 * @var       array
 		 */
-		public $allowed_html_tags = array(
+		public static $allowed_html_tags = array(
 			'a'        => array(
 				'id'     => true,
 				'class'  => true,
@@ -499,7 +499,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html        = sprintf( '<input data-default-color="test" type="%1$s" class="%2$s-text" id="%3$s[%4$s]" name="%3$s[%4$s]" value="%5$s"%6$s/>', $type, $size, $args['section'], $args['id'], $value, $placeholder );
 			$html       .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -531,7 +531,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html        = sprintf( '<input type="%1$s" class="%2$s-number" id="%3$s[%4$s]" name="%3$s[%4$s]" value="%5$s"%6$s%7$s%8$s%9$s/>', $type, $size, $args['section'], $args['id'], $value, $placeholder, $min, $max, $step );
 			$html       .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -550,7 +550,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html .= sprintf( '%1$s</label>', $args['desc'] );
 			$html .= '</fieldset>';
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -575,7 +575,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html .= $this->get_field_description( $args );
 			$html .= '</fieldset>';
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -598,7 +598,31 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html .= $this->get_field_description( $args );
 			$html .= '</fieldset>';
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
+		}
+
+		/**
+		 * Displays a radio button with images for a settings field
+		 *
+		 * @since     2.0.0
+		 * @access    public
+		 * @param     array $args Settings field args.
+		 */
+		public function callback_radio_image( $args ) {
+			$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
+			$html  = '<div id="sajjaddev-radio-button-wrapper">';
+			foreach ( $args['options'] as $key => $label ) {
+				$html .= '<div class="sajjaddev-radio-item">';
+				$html .= sprintf( '<label for="wpuf-%1$s[%2$s][%3$s]">', $args['section'], $args['id'], $key );
+				$html .= sprintf( '<input type="radio" class="radio" id="wpuf-%1$s[%2$s][%3$s]" name="%1$s[%2$s]" value="%3$s" %4$s />', $args['section'], $args['id'], $key, checked( $value, $key, false ) );
+				$html .= sprintf( '<img src="%1$s"></label>', $label );
+				$html .= '</div>';
+			}
+
+			$html .= $this->get_field_description( $args );
+			$html .= '</div>';
+
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -620,7 +644,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html .= sprintf( '</select>' );
 			$html .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -642,7 +666,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html .= sprintf( '</select>' );
 			$html .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -659,7 +683,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html        = sprintf( '<textarea style="min-width: 150px; max-width: 100%%; min-height: 150px; height: 100%%; width: 100%%;" %1$s id="%3$s" name="%2$s[%3$s]"%4$s>%5$s</textarea>', $readonly, $args['section'], $args['id'], $placeholder, $value );
 			$html       .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -670,7 +694,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		 * @param     array $args Settings field args.
 		 */
 		public function callback_html( $args ) {
-			echo wp_kses( $this->get_field_description( $args ), $this->allowed_html_tags );
+			echo wp_kses( $this->get_field_description( $args ), self::$allowed_html_tags );
 		}
 
 		/**
@@ -700,7 +724,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 
 			echo '</div>';
 
-			echo wp_kses( $this->get_field_description( $args ), $this->allowed_html_tags );
+			echo wp_kses( $this->get_field_description( $args ), self::$allowed_html_tags );
 		}
 
 		/**
@@ -719,7 +743,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html .= '<input type="button" class="button sajjaddev-browse" style="margin-left: 5px;" value="' . $label . '" />';
 			$html .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -735,7 +759,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html  = sprintf( '<input type="password" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
 			$html .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -751,7 +775,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 			$html  = sprintf( '<input type="text" class="%1$s-text wp-color-picker-field" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s" data-default-color="%5$s" />', $size, $args['section'], $args['id'], $value, $args['std'] );
 			$html .= $this->get_field_description( $args );
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -769,7 +793,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				'echo'     => 0,
 			);
 
-			echo wp_kses( wp_dropdown_pages( $dropdown_args ), $this->allowed_html_tags );
+			echo wp_kses( wp_dropdown_pages( $dropdown_args ), self::$allowed_html_tags );
 		}
 
 		/**
@@ -788,7 +812,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				'hide_empty' => 0,
 			);
 
-			echo wp_kses( wp_dropdown_categories( $dropdown_args ), $this->allowed_html_tags );
+			echo wp_kses( wp_dropdown_categories( $dropdown_args ), self::$allowed_html_tags );
 		}
 
 		/**
@@ -809,7 +833,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				'role__not_in' => isset( $args['role__not_in'] ) ? $args['role__not_in'] : array(),
 			);
 
-			echo wp_kses( wp_dropdown_users( $dropdown_args ), $this->allowed_html_tags );
+			echo wp_kses( wp_dropdown_users( $dropdown_args ), self::$allowed_html_tags );
 		}
 
 		/**
@@ -910,7 +934,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 
 			$html .= '</h2>';
 
-			echo wp_kses( $html, $this->allowed_html_tags );
+			echo wp_kses( $html, self::$allowed_html_tags );
 		}
 
 		/**
@@ -1061,6 +1085,53 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				} );
 			} );
 			</script>
+			<!-- Stylesheet for radio image -->
+			<style type="text/css">
+				/* HIDE RADIO */
+				#sajjaddev-radio-button-wrapper [type=radio] { 
+					position: absolute;
+					opacity: 0;
+					width: 0;
+					height: 0;
+				}
+
+				/* IMAGE STYLES */
+				#sajjaddev-radio-button-wrapper [type=radio] + img {
+					cursor: pointer;
+					margin: 10px;
+					width: auto;
+					max-width: 100%;
+					border-radius: 5px;
+				}
+
+				/* CHECKED STYLES */
+				#sajjaddev-radio-button-wrapper [type=radio]:checked + img {
+					outline: 2px solid #12a900;
+				}
+
+				#sajjaddev-radio-button-wrapper {
+					display: inline-flex;
+					flex-wrap: wrap;
+					align-content: center;
+					flex-direction: row;
+					justify-content: flex-start;
+					align-items: center;
+				}
+
+				.sajjaddev-radio-item {
+					background: white;
+					border: 1px solid #ebebeb;
+					padding: 5px;
+					min-height: 100px;
+					display: flex;
+					align-items: center;
+					width: 12rem;
+					align-content: center;
+					flex-wrap: nowrap;
+					flex-direction: row;
+					justify-content: center;
+				}
+			</style>
 			<?php
 		}
 	}
