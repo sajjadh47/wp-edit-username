@@ -2,10 +2,10 @@
 /**
  * File containing the definition of the Sajjad_Dev_Settings_API class.
  *
- * This file defines the Sajjad_Dev_Settings_API class, a wrapper for the WordPress Options API.
+ * This file defines the Sajjad_Dev_Settings_API class, a wrapper for the WordPress Settings API.
  *
- * @package       Sajjad_Dev_Settings_API
- * @author        Sajjad Hossain Sagor <sagorh672@gmail.com>
+ * @package    Sajjad_Dev_Settings_API
+ * @author     Sajjad Hossain Sagor <sagorh672@gmail.com>
  */
 
 if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
@@ -426,7 +426,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				if ( isset( $section['desc'] ) && ! empty( $section['desc'] ) ) {
 					$section['desc'] = '<div class="inside">' . $section['desc'] . '</div>';
 					$callback        = function () use ( $section ) {
-						echo esc_textarea( str_replace( '"', '\"', $section['desc'] ) );
+						echo wp_kses( $section['desc'], self::$allowed_html_tags );
 					};
 				} elseif ( isset( $section['callback'] ) ) {
 					$callback = $section['callback'];
@@ -928,7 +928,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		 * @access    public
 		 */
 		public function show_navigation() {
-			$html  = '<h2 class="nav-tab-wrapper">';
+			$html  = '<h1 class="nav-tab-wrapper">';
 			$count = count( $this->settings_sections );
 
 			// don't show the navigation if only one section exists.
@@ -940,7 +940,7 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 				$html .= sprintf( '<a href="#%1$s" class="nav-tab" id="%1$s-tab">%2$s</a>', $tab['id'], $tab['title'] );
 			}
 
-			$html .= '</h2>';
+			$html .= '</h1>';
 
 			echo wp_kses( $html, self::$allowed_html_tags );
 		}
