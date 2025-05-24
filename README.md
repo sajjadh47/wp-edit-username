@@ -1,5 +1,7 @@
 # WP Edit Username
 
+[![Plugin Banner](https://ps.w.org/wp-edit-username/assets/banner-772x250.png)](https://wordpress.org/plugins/wp-edit-username/)
+
 **Tags:** user, user-profile, profile-edit, edit, ajax, update, change-username, username \
 **Tested up to:** 6.8 \
 **Requires PHP:** 8.0
