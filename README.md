@@ -48,9 +48,6 @@ This plugin adds feature to edit/change user username.
 	?>
 `
 
-**Interested in contributing to WP Edit Username?**
-Contact me sagorh672(at)gmail.com
-
 ## Installation
 
 To add a WordPress Plugin using the built-in plugin installer:
