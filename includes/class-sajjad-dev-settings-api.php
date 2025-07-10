@@ -331,9 +331,9 @@ if ( ! class_exists( 'Sajjad_Dev_Settings_API' ) ) :
 		 * @access    public
 		 */
 		public function admin_enqueue_scripts() {
-			wp_register_style( 'sajjaddev-settings-api', TIP_THE_HELPER_PLUGIN_URL . 'admin/css/settings-api.css', array( 'wp-color-picker' ), '1.0.0', 'all' );
+			wp_register_style( 'sajjaddev-settings-api', WP_EDIT_USERNAME_PLUGIN_URL . 'admin/css/settings-api.css', array( 'wp-color-picker' ), '1.0.0', 'all' );
 
-			wp_register_script( 'sajjaddev-settings-api', TIP_THE_HELPER_PLUGIN_URL . 'admin/js/settings-api.js', array( 'jquery', 'wp-color-picker' ), '1.0.0', true );
+			wp_register_script( 'sajjaddev-settings-api', WP_EDIT_USERNAME_PLUGIN_URL . 'admin/js/settings-api.js', array( 'jquery', 'wp-color-picker' ), '1.0.0', true );
 		}
 
 		/**
