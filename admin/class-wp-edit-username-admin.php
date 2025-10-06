@@ -239,21 +239,8 @@ class WP_Edit_Username_Admin {
 					'label'   => __( 'Email Body Text', 'wp-edit-username' ),
 					'size'    => '700px',
 					'type'    => 'wysiwyg',
-					'default' => sprintf(
-						'<img src="{{gravatar_url}}"><p><strong>%s!!!</strong> %s<p>%s: {{first_name}}</p><p>%s: {{last_name}}</p><p>%s: {{display_name}}</p><p>%s: {{nickname}}</p><p>%s: {{full_name}}</p><p>%s: {{old_username}}</p><p>%s: {{new_username}}</p>',
-						__( 'Warning', 'wp-edit-username' ),
-						__( 'Your Username has been changed.', 'wp-edit-username' ),
-						__( 'First Name', 'wp-edit-username' ),
-						__( 'Last Name', 'wp-edit-username' ),
-						__( 'Display Name', 'wp-edit-username' ),
-						__( 'Nickname', 'wp-edit-username' ),
-						__( 'Full Name', 'wp-edit-username' ),
-						__( 'Old Username', 'wp-edit-username' ),
-						__( 'New Username', 'wp-edit-username' ),
-					),
-					'desc'    => sprintf(
-						'<p>%s : <code>{{first_name}}</code> <code>{{last_name}}</code> <code>{{display_name}}</code> <code>{{nickname}}</code> <code>{{full_name}}</code> <code>{{gravatar_url}}</code> <code>{{old_username}}</code> <code>{{new_username}}</code></p>',
-						__( 'Available shortcodes are', 'wp-edit-username' )
+					'default' => sprintf(esc_html__('%1$s%2$s%4$sWarning!!! %5$sYour Username has been changed.%2$sFirst Name: {{first_name}}%3$s%2$sLast Name: {{last_name}}%3$s%2$sDisplay Name: {{display_name}}%3$s%2$sNickname: {{nickname}}%3$s%2$sFull Name: {{full_name}}%3$s%2$sOld Username: {{old_username}}%3$s%2$sNew Username: {{new_username}}%3$s', 'wp-edit-username' ), '<img src="{{gravatar_url}}">', '<p>', '</p>', '<strong>', '</strong>'),
+					'desc'    => sprintf(esc_html__( '%1$sAvailable shortcodes are: %3$s{{first_name}}%4$s, %3$s{{last_name}}%4$s, %3$s{{display_name}}%4$s, %3$s{{nickname}}%4$s, %3$s{{full_name}}%4$s, %3$s{{gravatar_url}}%4$s, %3$s{{old_username}}%4$s, %3$s{{new_username}}%4$s%2$s', 'wp-edit-username' ), '<p>', '</p>', '<code>', '</code>'
 					),
 				),
 			),
@@ -348,11 +335,9 @@ class WP_Edit_Username_Admin {
 
 			if ( $result > 0 ) {
 				$response['success_msg'] = sprintf(
-					'%s <code>%s</code> %s <code>%s</code>.',
-					esc_html__( 'Username updated from', 'wp-edit-username' ),
-					esc_html( $old_username ),
-					esc_html__( 'to', 'wp-edit-username' ),
-					esc_html( $new_username )
+					esc_html__( 'Username updated from %1$s to %2$s.', 'wp-edit-username' ),
+					'<code>' . esc_html( $old_username ) . '</code>',
+					'<code>' . esc_html( $new_username ) . '</code>',										
 				);
 
 				if ( 'on' === WP_Edit_Username::get_option( 'wpeu_send_email_field', 'wpeu_register_settings_fields' ) ) {
