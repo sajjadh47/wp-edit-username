@@ -3,7 +3,7 @@
 [![Plugin Banner](https://ps.w.org/wp-edit-username/assets/banner-772x250.png)](https://wordpress.org/plugins/wp-edit-username/)
 
 **Tags:** user, user-profile, profile-edit, edit, ajax, update, change-username, username \
-**Tested up to:** 6.8 \
+**Tested up to:** 6.9 \
 **Requires PHP:** 8.0
 
 Easily Edit User Profile Username clicking a button.
@@ -94,6 +94,12 @@ Update inputs according to your requirement and you are good to go.
 ![After Username Changed Message.](https://ps.w.org/wp-edit-username/assets/screenshot-4.png)
 
 ## Changelog
+
+### 2.0.5
+- Checked for latest wp version 6.9
+
+### 2.0.4
+- Fixed issue: typo giving fatal error
 
 ### 2.0.3
 * Fixed issue: typo giving fatal error
